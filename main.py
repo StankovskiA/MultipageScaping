@@ -18,16 +18,13 @@ for X in range(0, len(urls)):
         areas = bigdetails[j].find_elements(By.CLASS_NAME, 'shortdescription')[1].get_attribute('textContent')
         name = bigdetails[j].find_elements(By.CLASS_NAME, 'companyname')[0].get_attribute('textContent')
         number = bigdetails[j].find_elements(By.CLASS_NAME, 'tcall')[0].get_attribute('textContent')
+        working_time = ""
+        adresa = ""
         for i in range(0, len(all_children_by_css)):
             if all_children_by_css[i].get_attribute('class') == 'h56146bf7196e9cd84da16cf2ccd2a8df':
                 adresa = all_children_by_css[i].find_elements(By.CSS_SELECTOR, "*")[0].get_attribute('textContent')
-            else:
-                adresa = ""
             if all_children_by_css[i].get_attribute('class') == 'workingtime':
                 working_time = all_children_by_css[i].get_attribute('textContent')
-            else:
-                working_time = ""
-
         df.loc[len(df.index)] = [str(name), str(adresa), str(number), str(working_time),
                                  str(areas.replace('Дејности:', ''))]
 
